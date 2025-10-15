@@ -6,9 +6,23 @@
   font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 
-body {
-  font-family: Arial, sans-serif;
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  width: 100vw;
+  background-color: #333;
+  padding: 0.5rem;
+  align-items: center;
+  text-align: right;
+  color: white;
+}
 
+body {
+  padding-top: 3.5rem;
+  font-family: Arial, sans-serif;
   color: #333;
   display: flex;
   justify-content: center;

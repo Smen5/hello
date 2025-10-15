@@ -1,8 +1,8 @@
-import "./SubmitBtn.css";
+import style from './SubmitBtn.module.css'
 const SubmitBtn = () => {
     return(
-        <button type="submit">
-            <img src="/send.svg" alt="Send" width={24} height={24} />
+        <button className={style.submitBtn}>
+            <img className={style.submitBtn} src="/send.svg" alt="Send" width={24} height={24} />
         </button>
     )	
 };

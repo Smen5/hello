@@ -1,0 +1,13 @@
+.phase{
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    margin: 0rem 1rem;
+    padding:1rem;
+}
+.date{
+    color:gray;
+    margin:1rem;
+    text-align: center;
+    font-size: 0.8rem;
+}

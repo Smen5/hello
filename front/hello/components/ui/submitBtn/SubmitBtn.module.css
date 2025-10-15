@@ -1,4 +1,4 @@
-button{
+button.submitBtn{
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -10,11 +10,14 @@ button{
     background-color: black;
     transition: all 0.3s ease-in-out;
 }
-button:hover{
+button.submitBtn:hover{
     background-color: rgb(78, 78, 78);
     cursor: pointer;
     transform: scale(1.2);
 }
-img{
+img.submitBtn{
+    width: 1.5rem;
+    height: 1.5rem;
     filter: brightness(0) invert(1);
+    object-fit: contain;
 }

@@ -1,0 +1,12 @@
+.textSection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:1rem;
+}
+#submitBtn{
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}

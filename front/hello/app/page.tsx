@@ -1,9 +1,11 @@
 import styles from "./page.module.css";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import SubmitBtn from "@/components/ui/submitBtn/SubmitBtn";
+import Feed from "@/components/ui/feed/Feed";
 
 export default function Home() {
   return (
+    <>
     <div className={styles.textSection}>
       <TextareaAutosize
         minRows={3}
@@ -21,5 +23,9 @@ export default function Home() {
         <SubmitBtn/>
       </div>
     </div>
+    <Feed/>
+    <Feed/>
+    <Feed/>
+    </>
   );
 }

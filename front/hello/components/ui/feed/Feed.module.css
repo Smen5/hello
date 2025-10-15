@@ -1,0 +1,28 @@
+div.feed{
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    margin:1rem;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    img{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+    }
+    cursor: pointer;
+}
+div.header{
+    display: flex;
+    justify-content: space-between;
+}
+div.text{
+    padding: 0.5rem;
+}
+div.date{
+    margin-right: 1rem;
+    color: gray;
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ProfileSummery from "@/components/ui/profile/Profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <header>
+        <div>
+          Smen5's Troubble shooting archive
+        </div>
+        <ProfileSummery/>
+      </header>
       <body>
         <div className="content">
           {children}

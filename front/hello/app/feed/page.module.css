@@ -1,0 +1,10 @@
+div.fieldContainer{
+    margin: 0 1rem;
+    position: relative;
+}
+
+#submitBtn{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
