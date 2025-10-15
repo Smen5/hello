@@ -1,0 +1,20 @@
+button{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: black;
+    transition: all 0.3s ease-in-out;
+}
+button:hover{
+    background-color: rgb(78, 78, 78);
+    cursor: pointer;
+    transform: scale(1.2);
+}
+img{
+    filter: brightness(0) invert(1);
+}
