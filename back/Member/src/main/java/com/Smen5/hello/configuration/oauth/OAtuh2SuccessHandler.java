@@ -25,11 +25,17 @@ public class OAtuh2SuccessHandler implements AuthenticationSuccessHandler {
         // 인증 성공 시 redirect
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("role", authentication.getAuthorities().iterator().next().getAuthority());
+		
 		StringBuilder redirectUrlBuilder = new StringBuilder(redirectUrl);
+		
 		redirectUrlBuilder.append("/oauth2/callback?token=");
+		
 		StringBuilder token = new StringBuilder("Bearer ");
+		
 		token.append(jwtProvider.generateToken(authentication.getName(), claims));
+		
 		redirectUrlBuilder.append(token);
-        response.sendRedirect(redirectUrlBuilder.toString());
+        
+		response.sendRedirect(redirectUrlBuilder.toString());
     }	
 }

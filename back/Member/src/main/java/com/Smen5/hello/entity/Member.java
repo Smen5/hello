@@ -32,4 +32,12 @@ public class Member {
 	@Getter
 	@Enumerated(EnumType.STRING)
 	private RoleConstant role;
+	
+	public void active() {
+		this.role = RoleConstant.ROLE_MEMBER;
+	}
+	
+	public void inactive() {
+		this.role = RoleConstant.ROLE_PENDING;
+	}
 }

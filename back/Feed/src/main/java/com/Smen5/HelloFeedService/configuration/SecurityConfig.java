@@ -1,4 +1,4 @@
-package com.Smen5.hello.configuration;
+package com.Smen5.HelloFeedService.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,18 +10,12 @@ import org.springframework.security.config.annotation.web.configurers.HttpBasicC
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.Smen5.hello.configuration.oauth.OAtuh2SuccessHandler;
-import com.Smen5.hello.service.GitHubOAuth2UserService;
-
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-	private final GitHubOAuth2UserService gitHubOAuth2UserService;
-	private final OAtuh2SuccessHandler oAtuh2SuccessHandler;
 	private final HeaderAuthenticationFilter headerAuthenticationFilter;
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -30,10 +24,6 @@ public class SecurityConfig {
 			.httpBasic(HttpBasicConfigurer::disable)
 			.formLogin(FormLoginConfigurer::disable)
 	        .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	        .authorizeHttpRequests(auth-> auth.requestMatchers("/api/login/**").permitAll().anyRequest().authenticated())
-	        .oauth2Login(oauth2-> oauth2
-	        	.userInfoEndpoint(userInfo -> userInfo.userService(gitHubOAuth2UserService))
-	        	.successHandler(oAtuh2SuccessHandler))
 	        .addFilterBefore(headerAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);;
         return http.build();
 	}

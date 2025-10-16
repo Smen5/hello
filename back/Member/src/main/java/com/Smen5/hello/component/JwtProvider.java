@@ -12,8 +12,10 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class JwtProvider {
 	@Value("${spring.jwt.key}")
 	private String key;
@@ -25,7 +27,7 @@ public class JwtProvider {
 		SecretKey secretKey = Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
 		return Jwts.builder()
 				.setSubject(uuid)
-				.setClaims(claims)
+				.claim("role", (String)claims.get("role"))
 				.setIssuedAt(now)
 				.setExpiration(expire)
 				.signWith(secretKey,SignatureAlgorithm.HS256)

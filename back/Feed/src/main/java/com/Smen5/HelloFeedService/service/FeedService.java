@@ -1,0 +1,52 @@
+package com.Smen5.HelloFeedService.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.Smen5.HelloFeedService.dto.FeedCreateDto;
+import com.Smen5.HelloFeedService.entity.ChildFeed;
+import com.Smen5.HelloFeedService.entity.Feed;
+import com.Smen5.HelloFeedService.repository.ChildFeedRepository;
+import com.Smen5.HelloFeedService.repository.FeedRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class FeedService {
+	private final FeedRepository feedRepository;
+	private final ChildFeedRepository childFeedRepository;
+	@Transactional
+	public void createFeed(FeedCreateDto dto, String uuid) {
+		Feed feed = Feed.builder()
+				.authorUuid(uuid)
+				.text(dto.getText())
+				.build();
+		
+		
+		feedRepository.save(feed);
+	}
+	
+	@Transactional
+	public void deleteFeed(String uuid , Long parentFeedId) {
+		Feed feed = feedRepository.findById(parentFeedId)
+				.orElseThrow(()->new RuntimeException("게시글이 존재하지 않습니다."));
+		
+		if(!feed.getAuthorUuid().equals(uuid))
+			throw new RuntimeException("권한이 없습니다.");
+		
+		List<ChildFeed> childFeeds = childFeedRepository.findAllByParent(feed);
+
+		childFeedRepository.deleteAll(childFeeds);
+		feedRepository.delete(feed);
+	}
+	
+	@Transactional(readOnly=true)
+	public void getFeed(Long feedId) {
+		
+	}
+}

@@ -4,7 +4,10 @@ import style from './Profile.module.css'
 const ProfileSummery = () => {
     const { uuid, name, avatarUrl, logout } = useUserStore();
     if(!uuid || !name || !avatarUrl){
-        return <button className={style.login}>로그인</button>;
+        return(<a href="/oauth2/authorization/github">
+                    <button className={style.login}>로그인</button>
+                </a>)
+        
     }
     return(
         <div className={style.profile}>
