@@ -1,0 +1,37 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  datasource:
+    url: 
+    username: 
+    password: 
+    driver-class-name: 
+  jpa:
+    database-platform: 
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id:
+            client-secret: 
+            redirect-uri: 
+            client-name: 
+      provider:
+        github:
+          authorization-uri: https://github.com/login/oauth/authorize
+          token-uri: https://github.com/login/oauth/access_token
+          user-info-uri: https://api.github.com/user
+          user-name-attribute: login
+  jwt:
+    key: 
+    term: 86400000

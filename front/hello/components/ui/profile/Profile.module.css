@@ -10,3 +10,14 @@ div.profile{
     justify-content: end;
     padding-right: 1rem;
 }
+button.login{
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button.login:hover{
+    background-color: #777;
+}

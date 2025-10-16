@@ -1,12 +1,18 @@
+"use client";
+import { useUserStore } from '@/store/useUserstore';
 import style from './Profile.module.css'
 const ProfileSummery = () => {
+    const { uuid, name, avatarUrl, logout } = useUserStore();
+    if(!uuid || !name || !avatarUrl){
+        return <button className={style.login}>로그인</button>;
+    }
     return(
         <div className={style.profile}>
-            <img className={style.profile} src='https://avatars.githubusercontent.com/u/132333588?s=400&u=cdaabb86defe8c1186f8b13bac3f330c83257d66&v=4'/>
+            <img className={style.profile} src={avatarUrl}/>
             <span style={{"fontSize":"1.2rem"}}>
-                김현빈
+                {name}
             </span>
         </div>
-    )	
+    )
 };
 export default ProfileSummery;

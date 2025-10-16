@@ -6,7 +6,7 @@
   font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 
-header {
+head {
   display: flex;
   justify-content: space-between;
   position: fixed;

@@ -25,12 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <header>
+      <head>
         <div>
           Smen5's Troubble shooting archive
         </div>
         <ProfileSummery/>
-      </header>
+      </head>
       <body>
         <div className="content">
           {children}
