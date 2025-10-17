@@ -24,8 +24,8 @@ export const useUserStore = create<UserState>()(
         set({ token: null, name: null, avatarUrl: null, uuid: null, role: null }),
     }),
     {
-      name: 'user-storage', // localStorage key
-      storage: createJSONStorage(() => localStorage), // or sessionStorage
+      name: 'user-storage',
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 )
