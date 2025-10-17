@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-gateway-service
+  namespace: hello-app
+spec:
+  type: ClusterIP
+  selector:
+    app: hello-gateway
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+

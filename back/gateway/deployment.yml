@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-gateway
+  namespace: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-gateway
+  template:
+    metadata:
+      labels:
+        app: hello-gateway
+    spec:
+      containers:
+      - name: hello-gateway
+        image: hello-gateway:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8081
+        env:
+        - name: SPRING_JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_JWT_KEY
