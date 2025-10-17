@@ -28,7 +28,7 @@ interface FeedPageProps {
 }
 
 async function getFeed(feedno: string): Promise<FeedData> {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/feed/${feedno}`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/feed/${feedno}`);
     return res.data;
 }
 export default async function FeedPage(props: FeedPageProps){
