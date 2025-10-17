@@ -4,4 +4,4 @@ spring:
   application:
     name: HelloFeedService
   profiles:
-    active: prod
+    active: ${SPRING_PROFILES_ACTIVE:local}

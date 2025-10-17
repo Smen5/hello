@@ -2,4 +2,4 @@ spring:
   application:
     name: hello-gateway
   profiles:
-    active: prod
+    active: ${SPRING_PROFILES_ACTIVE:local}
