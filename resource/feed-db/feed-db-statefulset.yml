@@ -21,7 +21,7 @@ spec:
           name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: ${SPRING_DATASOURCE_PASSWORD}
+          value: "@wu71903619"
         - name: MYSQL_DATABASE
           value: hello-feed-db
         volumeMounts:
