@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: hello-feed-db
+  namespace: hello-app
 spec:
   serviceName: "hello-feed-db-service"
   replicas: 1
