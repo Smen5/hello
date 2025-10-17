@@ -24,7 +24,7 @@ spring:
           github:
             client-id: Ov23ctOZWLeVONhbRCN6
             client-secret: ${SPRING_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET}
-            redirect-uri: "http://hello.hyunbindev.site/login/oauth2/code/{registrationId}"
+            redirect-uri: "https://hello.hyunbindev.site/login/oauth2/code/{registrationId}"
             client-name: GitHub
       provider:
         github:
