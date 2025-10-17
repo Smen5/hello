@@ -1,2 +1,3 @@
 /bin/
 **/application-local.yml
+**/configmap.yml

@@ -8,24 +8,24 @@ spring:
     livereload:
       enabled: true
   datasource:
-    url: 
-    username: 
-    password: 
-    driver-class-name: 
+    url: jdbc:mysql://localhost:3306/hello-member-db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: 
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
   security:
     oauth2:
       client:
         registration:
           github:
-            client-id:
-            client-secret: 
-            redirect-uri: 
-            client-name: 
+            client-id: Ov23ctOZWLeVONhbRCN6
+            client-secret: ${SPRING_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET}
+            redirect-uri: "http://hello.hyunbindev.site/login/oauth2/code/{registrationId}"
+            client-name: GitHub
       provider:
         github:
           authorization-uri: https://github.com/login/oauth/authorize
@@ -33,5 +33,5 @@ spring:
           user-info-uri: https://api.github.com/user
           user-name-attribute: login
   jwt:
-    key: 
+    key: ${SPRING_JWT_KEY}
     term: 86400000
