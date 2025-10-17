@@ -21,6 +21,11 @@ spec:
           - containerPort: 8080
             name: http
         env:
+        - name: SPRING_PROFILES_ACTIVE
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_PROFILES_ACTIVE
         - name: SPRING_PROD_PROFILE
           valueFrom:
             secretKeyRef:
