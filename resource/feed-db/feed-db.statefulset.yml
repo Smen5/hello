@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hello-feed-db
+spec:
+  serviceName: "hello-feed-db-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-feed-db
+  template:
+    metadata:
+      labels:
+        app: hello-feed-db
+    spec:
+      containers:
+      - name: hello-feed-db
+        image: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ${SPRING_DATASOURCE_PASSWORD}
+        - name: MYSQL_DATABASE
+          value: hello-feed-db
+        volumeMounts:
+        - name: hello-feed-db-storage
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: hello-feed-db-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 7Gi
