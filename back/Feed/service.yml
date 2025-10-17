@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-feed-ms-service
+  namespace: hello-app
+spec:
+  selector:
+    app: hello-feed-ms
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: ClusterIP
