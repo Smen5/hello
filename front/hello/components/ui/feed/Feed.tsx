@@ -20,16 +20,16 @@ const Feed =({ feedData }: { feedData: FeedData })=>{
         <div className={style.feed}>
             <div className={style.header}>
                 <div className={style.profile}>
-                    <img src={author.avatarUrl} alt={author.name}/>
+                    <img src={author?.avatarUrl} alt={author?.name}/>
                     <span style={{"fontSize":"1.2rem"}}>
-                        {author.name}
+                        {author?.name}
                     </span>
                 </div>
                 <div className={style.date}>
                     {formattedDate}
                 </div>
             </div>
-            <div className={style.text}>
+            <div className={style?.text}>
                 {text}
             </div>
         </div>

@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Home() {
   const { role } = useUserStore();
   const{text, setText, submitFeed}=useFeedViewModel();
-  const { feeds, loadMoreFeeds, hasMore, loading, observerRef } = useFeedList(10);
+  const { feeds, hasMore, observerRef } = useFeedList(10);
   return (
     <>{(role == 'ROLE_MEMBER') && <div className={styles.textSection}>
         <TextareaAutosize
