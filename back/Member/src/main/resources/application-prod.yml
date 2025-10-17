@@ -35,3 +35,5 @@ spring:
   jwt:
     key: ${SPRING_JWT_KEY}
     term: 86400000
+app:
+  redirect-url: "https://hello.hyunbindev.site"

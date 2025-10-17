@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,8 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class OAtuh2SuccessHandler implements AuthenticationSuccessHandler {
-	private final String redirectUrl = "http://localhost:3000";
+	@Value("${app.redirect-url}")
+	private String redirectUrl;
 	private final JwtProvider jwtProvider;
 	public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
@@ -37,5 +39,5 @@ public class OAtuh2SuccessHandler implements AuthenticationSuccessHandler {
 		redirectUrlBuilder.append(token);
         
 		response.sendRedirect(redirectUrlBuilder.toString());
-    }	
+    }
 }
