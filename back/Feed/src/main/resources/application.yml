@@ -4,4 +4,4 @@ spring:
   application:
     name: HelloFeedService
   profiles:
-    active: local
+    active: prod
