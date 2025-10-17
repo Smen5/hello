@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-feed-ms
+  namespace: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-feed-ms
+  template:
+    metadata:
+      labels:
+        app: hello-feed-ms
+    spec:
+      containers:
+      - name: hello-feed-ms
+        image: hello-feed-ms:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8082
+            name: http
+        env:
+        - name: SPRING_PROD_PROFILE
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_PROD_PROFILE
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_DATASOURCE_PASSWORD
+
