@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-front
+  namespace: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-front
+  template:
+    metadata:
+      labels:
+        app: hello-front
+    spec:
+      containers:
+        - name: hello-front
+          image: hello-next.js
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NEXT_PUBLIC_API_URL
+              value: "https://hello.hyunbindev.site"
+

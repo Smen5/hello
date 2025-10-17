@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-front
+  namespace: hello-app
+spec:
+  type: ClusterIP
+  selector:
+    app: hello-front
+  ports:
+    - port: 80
+      targetPort: 3000
+
