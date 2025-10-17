@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: hello-member-db
+  namespace: hello-app
 spec:
   serviceName: "hello-member-db-service"
   replicas: 1
@@ -21,7 +22,7 @@ spec:
           name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: #ROOTPASSWORD
+          value: "@wu71903619"
         - name: MYSQL_DATABASE
           value: hello-member-db
         volumeMounts:
