@@ -8,7 +8,7 @@ spring:
     livereload:
       enabled: true
   datasource:
-    url: jdbc:mysql://localhost:3306/hello-member-db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://hello-member-db-0.hello-member-db-service.hello-app.svc.cluster.local:3306/hello-member-db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
