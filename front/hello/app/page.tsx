@@ -4,10 +4,12 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import SubmitBtn from "@/components/ui/submitBtn/SubmitBtn";
 import Feed from "@/components/ui/feed/Feed";
 import { useUserStore } from '@/store/useUserstore';
-import { useFeedViewModel } from "@/viewmodel/useFeedViewModel";
+import { useFeedList, useFeedViewModel } from "@/viewmodel/useFeedViewModel";
+import Link from "next/link";
 export default function Home() {
   const { role } = useUserStore();
   const{text, setText, submitFeed}=useFeedViewModel();
+  const { feeds, loadMoreFeeds, hasMore, loading, observerRef } = useFeedList(10);
   return (
     <>{(role == 'ROLE_MEMBER') && <div className={styles.textSection}>
         <TextareaAutosize
@@ -28,6 +30,14 @@ export default function Home() {
           <SubmitBtn/>
         </div>
       </div>}
+      <div className={styles.feedList}>
+        {feeds.map((feed) => (
+          <Link key={feed.no} href={`/feed/${feed.no}`}>
+              <Feed feedData={feed} />
+          </Link>
+        ))}
+      </div>
+      {hasMore && <div ref={observerRef} style={{ height: "30px" }} />}
     </>
   );
 }

@@ -1,9 +1,15 @@
 package com.Smen5.HelloFeedService.service;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,5 +70,17 @@ public class FeedService {
 																								.build())
 																							.toList();
 		return new FeedResponseDto(feed, memberMap.get(feed.getAuthorUuid()),childFeedDtos);
+	}
+	@Transactional(readOnly=true)
+	public List<FeedResponseDto> getFeeds(int page, int size){
+		Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createDate"));
+		Page<Feed> feeds = feedRepository.findAll(pageable);
+		Set<String> authorUuids = new HashSet<>();
+		feeds.stream().forEach((f)->authorUuids.add(f.getAuthorUuid()));
+		Map<String,MemberDto> memberMap = memberClient.getMemberBulk(authorUuids.stream().toList());
+		return feeds.stream().map((f)->{
+			MemberDto authorDto = memberMap.get(f.getAuthorUuid());
+			return new FeedResponseDto(f,authorDto,null);
+		}).toList();
 	}
 }

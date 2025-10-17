@@ -38,3 +38,18 @@ export async function createChildFeed(feedNo: string, text: string , token: stri
         throw error;
     }
 }
+
+export async function getFeedList(page: number, size: number){
+    try{
+        const response = await axios.get("/api/feed",{
+            params: {
+                page: page,
+                size: size,
+            }
+        });
+        return response.data;
+    }catch(error){
+        console.error("Error fetching feed list:", error);
+        throw error;
+    }
+}
