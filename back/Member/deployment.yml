@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-member-ms
+  namespace: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-member-ms
+  template:
+    metadata:
+      labels:
+        app: hello-member-ms
+    spec:
+      containers:
+      - name: hello-member-ms
+        image: hello-member-ms:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8080
+            name: http
+        env:
+        - name: SPRING_PROD_PROFILE
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_PROD_PROFILE
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_DATASOURCE_PASSWORD
+        - name: SPRING_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
+        - name: SPRING_JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hello-member-ms-config
+              key: SPRING_JWT_KEY
+
