@@ -1,23 +1,36 @@
 import style from './Feed.module.css'
-const Feed =()=>{
+
+interface Author {
+    uuid: string;
+    name: string;
+    avatarUrl: string;
+}
+
+interface FeedData {
+    author: Author;
+    no: number;
+    createdAt: string;
+    text: string;
+}
+
+const Feed =({ feedData }: { feedData: FeedData })=>{
+    const { author, text, createdAt } = feedData;
+    const formattedDate = new Date(createdAt).toLocaleDateString();
     return(
         <div className={style.feed}>
             <div className={style.header}>
                 <div className={style.profile}>
-                    <img src='https://avatars.githubusercontent.com/u/132333588?s=400&u=cdaabb86defe8c1186f8b13bac3f330c83257d66&v=4'/>
+                    <img src={author.avatarUrl} alt={author.name}/>
                     <span style={{"fontSize":"1.2rem"}}>
-                        김현빈
+                        {author.name}
                     </span>
                 </div>
                 <div className={style.date}>
-                    2025.10.4
+                    {formattedDate}
                 </div>
             </div>
             <div className={style.text}>
-                content sectioncontent section
-                content section
-                content section
-                content sectioncontent section
+                {text}
             </div>
         </div>
     );

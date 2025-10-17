@@ -1,11 +1,17 @@
 package com.Smen5.HelloFeedService.service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.Smen5.HelloFeedService.client.MemberClient;
+import com.Smen5.HelloFeedService.dto.ChildFeedDto;
 import com.Smen5.HelloFeedService.dto.FeedCreateDto;
+import com.Smen5.HelloFeedService.dto.FeedResponseDto;
+import com.Smen5.HelloFeedService.dto.MemberDto;
 import com.Smen5.HelloFeedService.entity.ChildFeed;
 import com.Smen5.HelloFeedService.entity.Feed;
 import com.Smen5.HelloFeedService.repository.ChildFeedRepository;
@@ -20,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FeedService {
 	private final FeedRepository feedRepository;
 	private final ChildFeedRepository childFeedRepository;
+	private final MemberClient memberClient;
 	@Transactional
 	public void createFeed(FeedCreateDto dto, String uuid) {
 		Feed feed = Feed.builder()
@@ -46,7 +53,16 @@ public class FeedService {
 	}
 	
 	@Transactional(readOnly=true)
-	public void getFeed(Long feedId) {
-		
+	public FeedResponseDto getFeed(Long feedId) {
+		Feed feed = feedRepository.findById(feedId)
+				.orElseThrow(()-> new RuntimeException("피드가 존재하지 않습니다."));
+		Map<String,MemberDto> memberMap = memberClient.getMemberBulk(Collections.singletonList(feed.getAuthorUuid()));
+		List<ChildFeedDto> childFeedDtos = childFeedRepository.findAllByParent(feed).stream().map((c)-> ChildFeedDto.builder()
+																								.no(c.getId())
+																								.createdAt(c.getCreateDate())
+																								.text(c.getText())
+																								.build())
+																							.toList();
+		return new FeedResponseDto(feed, memberMap.get(feed.getAuthorUuid()),childFeedDtos);
 	}
 }

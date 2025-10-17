@@ -30,7 +30,7 @@ public class SecurityConfig {
 			.httpBasic(HttpBasicConfigurer::disable)
 			.formLogin(FormLoginConfigurer::disable)
 	        .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	        .authorizeHttpRequests(auth-> auth.requestMatchers("/api/login/**").permitAll().anyRequest().authenticated())
+	        .authorizeHttpRequests(auth-> auth.requestMatchers("/api/login/**","/internal/**").permitAll().anyRequest().authenticated())
 	        .oauth2Login(oauth2-> oauth2
 	        	.userInfoEndpoint(userInfo -> userInfo.userService(gitHubOAuth2UserService))
 	        	.successHandler(oAtuh2SuccessHandler))

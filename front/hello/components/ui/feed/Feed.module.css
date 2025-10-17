@@ -21,6 +21,8 @@ div.header{
 }
 div.text{
     padding: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 div.date{
     margin-right: 1rem;

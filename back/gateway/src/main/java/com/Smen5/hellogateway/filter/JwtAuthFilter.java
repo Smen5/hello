@@ -32,10 +32,9 @@ public class JwtAuthFilter implements GlobalFilter{
 	    if (path.startsWith("/oauth2/") || path.startsWith("/login/oauth2/code/github") || exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
 	        return chain.filter(exchange);
 	    }
+	    //사용자 인증 정보 없을경우 헤더에 넣지 않음
 	    if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-	        // Authorization 헤더 없으면 401
-	        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-	        return exchange.getResponse().setComplete();
+	    	return chain.filter(exchange);
 	    }
 	    String token = authHeader.substring(7);
 	    

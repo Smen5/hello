@@ -25,13 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <div>
-          Smen5's Troubble shooting archive
-        </div>
-        <ProfileSummery/>
-      </head>
       <body>
+        <header>
+          <div>
+            Smen5's Troubble shooting archive
+          </div>
+          <ProfileSummery/>
+        </header>
         <div className="content">
           {children}
         </div>

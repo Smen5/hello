@@ -21,6 +21,14 @@ public class HeaderAuthenticationFilter extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		String userId = request.getHeader("X-User-Id");
 		String role = request.getHeader("X-User-Role");
+		
+		//내부 통신 필터 적용 해제
+		String path = request.getRequestURI();
+	    if (path.startsWith("/internal/")) {
+	        filterChain.doFilter(request, response);
+	        return;
+	    }
+	    
         if (userId != null && role != null) {
             UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(

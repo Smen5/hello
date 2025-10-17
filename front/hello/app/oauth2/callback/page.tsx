@@ -8,6 +8,7 @@ import { useEffect } from "react";
 interface UserResponse {
   uuid: string;
   name: string;
+  role: string;
   avatarUrl: string;
 }
 
@@ -30,7 +31,7 @@ const OauthRedirectPage = () => {
 
       try {
         // 서버에서 유저 정보 가져오기
-        axios.get("http://localhost:8081/api/member/me",{
+        axios.get("/api/member/me",{
             headers: {
                 Authorization: tokenParam,
             },
@@ -38,7 +39,7 @@ const OauthRedirectPage = () => {
         })
         .then((response) => {
             const user: UserResponse = response.data;
-            setUser(tokenParam, user.name, user.avatarUrl, user.uuid);
+            setUser(tokenParam, user.name, user.avatarUrl, user.uuid, user.role);
         })
         .catch((error) => {console.log(error);});
         

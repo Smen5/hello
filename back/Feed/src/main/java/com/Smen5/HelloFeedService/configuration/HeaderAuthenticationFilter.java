@@ -29,11 +29,7 @@ public class HeaderAuthenticationFilter extends OncePerRequestFilter{
                     Collections.singletonList(new SimpleGrantedAuthority(role))
                 );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            filterChain.doFilter(request, response);
-            return;
         }
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setContentType("application/json");
-        response.getWriter().write("{\"error\": \"Unauthorized\"}");
+        filterChain.doFilter(request, response);
 	}
 }

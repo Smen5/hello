@@ -27,6 +27,7 @@ import lombok.NoArgsConstructor;
 public class Feed {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter
 	private Long id;
 	@Getter
 	private String authorUuid;
@@ -35,5 +36,6 @@ public class Feed {
 	@Getter
 	private LocalDateTime createDate;
 	@Lob
+	@Getter
 	private String text;
 }

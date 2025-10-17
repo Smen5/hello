@@ -27,6 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChildFeed {
+	@Getter
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,6 +37,7 @@ public class ChildFeed {
 	@Column(updatable = false)
 	@Getter
 	private LocalDateTime createDate;
+	@Getter
 	@Lob
 	private String text;
 }

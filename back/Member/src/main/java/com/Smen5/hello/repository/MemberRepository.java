@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.Smen5.hello.constant.RoleConstant;
 import com.Smen5.hello.entity.Member;
@@ -15,7 +16,7 @@ public interface MemberRepository extends JpaRepository<Member,Long>{
 	boolean existsByUuid(String uuid);
 	
 	@Query("SELECT m FROM Member m WHERE m.uuid IN :uuids")
-	List<Member> findAllByUuid(List<String> uuids);
+	List<Member> findAllByUuid(@Param("uuids") List<String> uuids);
 	
 	List<Member> findByRole(RoleConstant role);
 }
