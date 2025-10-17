@@ -19,14 +19,14 @@ spring:
        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
       routes:
         - id: oauth2_route
-          uri: http://hello-member-ms.hello-app.svc.cluster.local:8080
+          uri: http://hello-member-ms-service.hello-app.svc.cluster.local:8080
           predicates:
             - Path=/oauth2/**, /login/oauth2/code/github
         - id: member_route
-          uri: http://hello-member-ms.hello-app.svc.cluster.local:8080
+          uri: http://hello-member-ms-service.hello-app.svc.cluster.local:8080
           predicates:
             - Path=/api/member/**
         - id: feed_route
-          uri: http://hello-feed-ms.hello-app.svc.cluster.local:8082
+          uri: http://hello-feed-ms-service.hello-app.svc.cluster.local:8082
           predicates:
             - Path=/api/feed/**
