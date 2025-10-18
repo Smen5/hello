@@ -20,7 +20,9 @@ export default function RootLayout({
           <Link href="/" className="logo">
             Smen5's Troubble shooting archive
           </Link>
-          <ProfileSummery/>
+          <div>
+            <ProfileSummery/>
+          </div>
         </header>
         <div className="content">
           {children}

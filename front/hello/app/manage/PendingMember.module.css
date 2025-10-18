@@ -1,0 +1,32 @@
+div.pendingMember{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: solid 1px #ddd;
+    .info{
+        display: flex;
+        align-items: center;
+    }
+    img{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+    div.name{
+        font-size: 1rem;
+    }
+    button.approve{
+        background-color:rgb(85, 85, 85);
+        border: none;
+        color:white;
+        border-radius: 5px;
+        padding: 0.2rem 1rem;
+        font-size: 1rem;
+    }
+    button.approve:hover{
+        background-color: #7777;
+        cursor: pointer;
+    }
+}
