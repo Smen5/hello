@@ -1,6 +1,9 @@
 ## hello
 trouble shoting log archive
 
+링크
+##[https://hello.hyunbindev.site](https://hello.hyunbindev.site)
+
 개발시 부딪혔던 이슈들, 해결방안들 작성 및 기록 용 archive
 Front-End
 Next.js

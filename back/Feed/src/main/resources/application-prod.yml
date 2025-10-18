@@ -19,4 +19,4 @@ spring:
     show-sql: true
 app:
   service:
-    member: "http://hello-member-ms.hello-app.svc.cluster.local:8080"
+    member: "http://hello-member-ms-service.hello-app.svc.cluster.local:8080"
