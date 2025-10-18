@@ -20,21 +20,27 @@ public class MemberActiveService {
 	private final MemberRepository memberRepository;
 	
 	@Transactional
-	public void activeMember(String memberUuid) {
+	public void activeMember(String userUuid, String memberUuid) {
 		Member member = memberRepository.findByUuid(memberUuid)
 				.orElseThrow(()->new RuntimeException("사용자가 존재하지 않습니다."));
 		member.active();
 	}
 	
 	@Transactional
-	public void inactiveMember(String memberUuid) {
+	public void inactiveMember(String userUuid, String memberUuid) {
 		Member member = memberRepository.findByUuid(memberUuid)
 				.orElseThrow(()->new RuntimeException("사용자가 존재하지 않습니다."));
 		member.inactive();
 	}
 	
 	@Transactional(readOnly=true)
-	public List<MemberResponseDto> getPendingMembers(){
+	public List<MemberResponseDto> getPendingMembers(String userUuid){
+		Member user = memberRepository.findByUuid(userUuid)
+				.orElseThrow(()->new RuntimeException("잘못된 접근"));
+		
+		if(user.getRole() != RoleConstant.ROLE_MEMBER)
+			throw new RuntimeException("권한 없음");
+		
 		List<Member> member = memberRepository.findByRole(RoleConstant.ROLE_PENDING);
 		return member.stream()
 				.map((m)-> MemberResponseDto.builder()
