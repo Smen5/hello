@@ -5,6 +5,7 @@
     font-size: 0.8rem;
 }
 div.text{
+    position: relative;
     border-radius: 5px;
     padding: 0.5rem;
     border: 1px solid #ccc;

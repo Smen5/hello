@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import com.Smen5.HelloFeedService.dto.FeedResponseDto;
 import com.Smen5.HelloFeedService.dto.MemberDto;
 import com.Smen5.HelloFeedService.entity.ChildFeed;
 import com.Smen5.HelloFeedService.entity.Feed;
+import com.Smen5.HelloFeedService.exception.FeedException;
 import com.Smen5.HelloFeedService.repository.ChildFeedRepository;
 import com.Smen5.HelloFeedService.repository.FeedRepository;
 
@@ -47,10 +49,10 @@ public class FeedService {
 	@Transactional
 	public void deleteFeed(String uuid , Long parentFeedId) {
 		Feed feed = feedRepository.findById(parentFeedId)
-				.orElseThrow(()->new RuntimeException("게시글이 존재하지 않습니다."));
+				.orElseThrow(()->new FeedException("게시글이 존재하지 않습니다.",HttpStatus.NO_CONTENT));
 		
 		if(!feed.getAuthorUuid().equals(uuid))
-			throw new RuntimeException("권한이 없습니다.");
+			throw new FeedException("권한이 없습니다.",HttpStatus.UNAUTHORIZED);
 		
 		List<ChildFeed> childFeeds = childFeedRepository.findAllByParent(feed);
 
@@ -61,7 +63,7 @@ public class FeedService {
 	@Transactional(readOnly=true)
 	public FeedResponseDto getFeed(Long feedId) {
 		Feed feed = feedRepository.findById(feedId)
-				.orElseThrow(()-> new RuntimeException("피드가 존재하지 않습니다."));
+				.orElseThrow(()-> new FeedException("피드가 존재하지 않습니다.",HttpStatus.NO_CONTENT));
 		Map<String,MemberDto> memberMap = memberClient.getMemberBulk(Collections.singletonList(feed.getAuthorUuid()));
 		List<ChildFeedDto> childFeedDtos = childFeedRepository.findAllByParent(feed).stream().map((c)-> ChildFeedDto.builder()
 																								.no(c.getId())

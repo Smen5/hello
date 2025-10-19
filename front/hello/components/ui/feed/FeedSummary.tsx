@@ -14,7 +14,7 @@ interface FeedData {
     text: string;
 }
 
-const Feed =({ feedData }: { feedData: FeedData })=>{
+const FeedSummary =({ feedData }: { feedData: FeedData })=>{
     const { author, text, createdAt } = feedData;
     const formattedDate = new Date(createdAt).toLocaleDateString();
     return(
@@ -28,7 +28,6 @@ const Feed =({ feedData }: { feedData: FeedData })=>{
                 </div>
                 <div className={style.date}>
                     {formattedDate}
-                    <DeleteBtn feedNo={feedData.no} feedAuthorUuid={feedData.author.uuid}/>
                 </div>
             </div>
             <div className={style?.text}>
@@ -37,4 +36,4 @@ const Feed =({ feedData }: { feedData: FeedData })=>{
         </div>
     );
 }
-export default Feed;
+export default FeedSummary;

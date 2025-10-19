@@ -1,13 +1,13 @@
+
+
 import type { Metadata } from "next";
 import "./globals.css";
 import ProfileSummery from "@/components/ui/profile/Profile";
 import Link from "next/link";
-
 export const metadata: Metadata = {
   title: "Smen5 TroubleShooting Archive",
   description: "Smen5'TroubleShooting Archive",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

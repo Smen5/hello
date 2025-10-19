@@ -2,6 +2,7 @@ import Feed from "@/components/ui/feed/Feed";
 import ChildFeed from "@/components/ui/feed/ChildFeed";
 import axios from "axios";
 import TextArea from "./TextArea";
+import DeleteBtn from "@/components/ui/feed/DeleteBtn";
 
 
 interface Author {
@@ -12,13 +13,14 @@ interface Author {
 
 interface FeedData {
     author: Author;
-    no: number;
+    no: string;
     createdAt: string;
     text: string;
     childFeeds: ChildFeedData[];
 }
 
 interface ChildFeedData {
+    no: string;
     createdAt: string;
     text: string;
 }
@@ -37,10 +39,11 @@ export default async function FeedPage(props: FeedPageProps){
     return(
     <div>
         <Feed feedData={feedData}/>
+        
         <TextArea authorUuid={feedData.author.uuid} feedNo={params.feedno}/>
         {
             feedData.childFeeds.map((childFeed, index)=>(
-                <ChildFeed key={index} feed={childFeed}/>
+                <ChildFeed key={index} feed={childFeed} parentAuthorUuid={feedData.author.uuid}/>
             ))
         }
     </div>

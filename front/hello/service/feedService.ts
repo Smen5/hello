@@ -53,3 +53,31 @@ export async function getFeedList(page: number, size: number){
         throw error;
     }
 }
+export async function deleteFeed(feedNo: string, token: string){
+    try{
+        const response = await axios.delete(`/api/feed/${feedNo}`,{
+            headers: {
+                Authorization: token,
+            },
+            withCredentials: true,
+        })
+        return response.data;
+    }catch(error){
+        console.error("Error fetching feed list:", error);
+        throw error;
+    }
+}
+export async function requestDeleteChildFeed(feedNo: string, token: string){
+    try{
+        const response = await axios.delete(`/api/feed/child/${feedNo}`,{
+            headers: {
+                Authorization: token,
+            },
+            withCredentials: true,
+        })
+        return response.data;
+    }catch(error){
+        console.error("Error fetching feed list:", error);
+        throw error;
+    }
+}

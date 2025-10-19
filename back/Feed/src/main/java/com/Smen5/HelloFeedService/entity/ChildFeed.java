@@ -31,6 +31,7 @@ public class ChildFeed {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Getter
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Feed parent;
 	@CreatedDate

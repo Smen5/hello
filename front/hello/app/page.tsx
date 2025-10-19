@@ -2,10 +2,10 @@
 import styles from "./page.module.css";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import SubmitBtn from "@/components/ui/submitBtn/SubmitBtn";
-import Feed from "@/components/ui/feed/Feed";
 import { useUserStore } from '@/store/useUserstore';
 import { useFeedList, useFeedViewModel } from "@/viewmodel/useFeedViewModel";
 import Link from "next/link";
+import FeedSummary from "@/components/ui/feed/FeedSummary";
 export default function Home() {
   const { role } = useUserStore();
   const{text, setText, submitFeed}=useFeedViewModel();
@@ -33,7 +33,7 @@ export default function Home() {
       <div className={styles.feedList}>
         {feeds.map((feed) => (
           <Link key={feed.no} href={`/feed/${feed.no}`}>
-              <Feed feedData={feed} />
+              <FeedSummary feedData={feed} />
           </Link>
         ))}
       </div>

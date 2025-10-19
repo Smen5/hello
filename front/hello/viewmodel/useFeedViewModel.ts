@@ -25,7 +25,7 @@ interface Author {
 
 interface FeedData {
     author: Author;
-    no: number;
+    no: string;
     createdAt: string;
     text: string;
 }
