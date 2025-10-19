@@ -2,7 +2,6 @@ import Feed from "@/components/ui/feed/Feed";
 import ChildFeed from "@/components/ui/feed/ChildFeed";
 import axios from "axios";
 import TextArea from "./TextArea";
-import DeleteBtn from "@/components/ui/feed/DeleteBtn";
 
 
 interface Author {
@@ -37,7 +36,7 @@ export default async function FeedPage(props: FeedPageProps){
     const params = await props.params;
     const feedData = await getFeed(params.feedno);
     return(
-    <div>
+    <div style={{marginBottom:"5rem"}}>
         <Feed feedData={feedData}/>
         
         <TextArea authorUuid={feedData.author.uuid} feedNo={params.feedno}/>
